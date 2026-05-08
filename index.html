@@ -97,10 +97,11 @@
     font-size: 18px;
   }
   .nav-logo-text {
-    font-family: var(--serif);
-    font-size: 17px;
-    font-weight: 600;
+    font-family: var(--graphy);
+    font-weight: 900;
+    font-size: 18px;
     letter-spacing: -0.01em;
+    text-transform: uppercase;
   }
   .nav-logo-text span { color: var(--accent); }
   .nav-links {
@@ -115,7 +116,8 @@
     cursor: pointer;
     border-radius: 8px;
     text-decoration: none;
-    font-weight: 500;
+    font-family: var(--graphy);
+    font-weight: 400;
     transition: background 0.15s ease;
   }
   .nav-link:hover { background: var(--bg-2); }
@@ -460,6 +462,13 @@
     background: var(--bg-2);
   }
   .ops-card .label-icon svg { width: 12px; height: 12px; }
+  .ops-card .label,
+  .ops-card .sub,
+  .status-pill,
+  .ops-card .audit-stat .lbl,
+  .trend-up, .trend-down {
+    font-family: var(--graphy);
+  }
   .ops-card .value {
     font-family: var(--graphy);
     font-size: 44px;
@@ -505,6 +514,51 @@
     border: none;
     background-image:
       radial-gradient(circle at 0% 100%, rgba(255, 107, 26, 0.22), transparent 55%);
+  }
+
+  /* Tool launcher cards (Tableau, WorkCenter) */
+  .ops-card.tool-card {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    background: linear-gradient(180deg, var(--surface) 0%, var(--surface-soft) 100%);
+  }
+  .ops-card.tool-card .label-icon.tableau-icon {
+    background: #e8f0fa;
+    color: #1f5599;
+  }
+  .ops-card.tool-card .label-icon.workcenter-icon {
+    background: #fdebe0;
+    color: var(--accent-deep);
+  }
+  .tool-name {
+    font-family: var(--graphy);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-top: 4px;
+  }
+  .tool-meta {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .tool-arrow {
+    position: absolute;
+    top: 22px; right: 22px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    display: grid; place-items: center;
+    color: var(--ink);
+    transition: all 0.2s ease;
+  }
+  .tool-arrow svg { width: 13px; height: 13px; }
+  .ops-card.tool-card:hover .tool-arrow {
+    background: var(--ink);
+    color: white;
+    transform: rotate(0deg) scale(1.05);
   }
   .ops-card.audit .label { color: rgba(255, 255, 255, 0.6); }
   .ops-card.audit .label-icon { background: rgba(255, 255, 255, 0.08); color: var(--accent); }
@@ -920,7 +974,253 @@
     text-transform: uppercase;
   }
 
-  /* Quick links */
+  /* === POPULAR OWNER RESOURCES — physical, tactile feel === */
+  .resources-card {
+    background: linear-gradient(165deg, #f9f5ec 0%, #f4ede0 100%);
+    border-radius: var(--radius);
+    padding: 22px;
+    border: 1px solid var(--line-strong);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.8) inset,
+      0 -1px 0 rgba(120, 100, 60, 0.05) inset,
+      0 4px 12px rgba(120, 90, 40, 0.08),
+      0 1px 3px rgba(120, 90, 40, 0.06);
+    position: relative;
+  }
+  .resources-card .side-card-title {
+    color: #6b5d3f;
+    margin-bottom: 16px;
+  }
+  .resources-card .side-card-title::before {
+    background: var(--accent);
+  }
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .resource-btn {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.15s ease;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      0 1px 2px rgba(120, 90, 40, 0.06),
+      0 2px 6px rgba(120, 90, 40, 0.04);
+    position: relative;
+  }
+  .resource-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      0 4px 12px rgba(120, 90, 40, 0.1),
+      0 2px 6px rgba(120, 90, 40, 0.06);
+  }
+  .resource-btn:active {
+    transform: translateY(0);
+  }
+  .resource-icon {
+    width: 32px; height: 32px;
+    border-radius: 9px;
+    display: grid; place-items: center;
+    background: var(--bg-2);
+    color: var(--ink);
+  }
+  .resource-icon svg { width: 15px; height: 15px; }
+  .resource-icon.tableau { background: #e8f0fa; color: #1f5599; }
+  .resource-icon.workcenter { background: #fdebe0; color: var(--accent-deep); }
+  .resource-icon.r1 { background: #e6f2ea; color: var(--green); }
+  .resource-icon.r2 { background: #f3e8f7; color: #8a4aaf; }
+  .resource-name {
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--ink);
+    font-family: var(--graphy);
+  }
+  .resource-sub {
+    font-size: 10px;
+    color: var(--muted);
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+
+  /* === LOOK UP PEOPLE — wide button widget === */
+  .lookup-people {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .lookup-people:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--line-strong);
+  }
+  .lookup-icon {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: var(--ink-card);
+    display: grid; place-items: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  .lookup-icon svg { width: 18px; height: 18px; }
+  .lookup-text { flex: 1; min-width: 0; }
+  .lookup-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+    letter-spacing: -0.01em;
+  }
+  .lookup-sub {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+  .lookup-arrow {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    display: grid; place-items: center;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .lookup-arrow svg { width: 13px; height: 13px; }
+  .lookup-people:hover .lookup-arrow {
+    background: var(--ink);
+    color: white;
+  }
+
+
+  /* === STORM UPDATE — soft alert, green, with map feel === */
+  .storm-card {
+    background: linear-gradient(160deg, #2f7d4f 0%, #235c3a 100%);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    color: white;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    display: block;
+  }
+  .storm-card:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  .storm-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08), transparent 40%),
+      radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.05), transparent 50%);
+    pointer-events: none;
+  }
+  .storm-card .storm-map {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    width: 140px;
+    height: 110px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .storm-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .storm-pulse {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #a8e6b0;
+    box-shadow: 0 0 0 0 rgba(168, 230, 176, 0.7);
+    animation: storm-pulse 2s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes storm-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(168, 230, 176, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(168, 230, 176, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(168, 230, 176, 0); }
+  }
+  .storm-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+  }
+  .storm-status {
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: white;
+  }
+  .storm-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+    position: relative;
+  }
+  .storm-detail {
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.82);
+    margin-bottom: 12px;
+    position: relative;
+    max-width: 72%;
+  }
+  .storm-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+  }
+  .storm-meta .meta-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
   .quick-links {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1013,17 +1313,14 @@
 <nav class="top-nav">
   <div class="top-nav-left">
     <div class="nav-logo">
-      <div class="nav-logo-mark">S</div>
       <div class="nav-logo-text">SERVPRO<span>NET</span></div>
     </div>
     <div class="nav-links">
-      <a class="nav-link active" href="#">Home</a>
+      <a class="nav-link" href="#">News & Updates <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a class="nav-link" href="#">Work Resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
       <a class="nav-link" href="#">National Accounts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
-      <a class="nav-link" href="#">Operations <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
-      <a class="nav-link" href="#">Marketing <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
-      <a class="nav-link" href="#">Training <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
-      <a class="nav-link" href="#">People & HR <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
-      <a class="nav-link" href="#">Resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a class="nav-link" href="#">People, Culture, & Support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a class="nav-link" href="#">Learning & Training <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
     </div>
   </div>
   <div class="top-nav-right">
@@ -1185,32 +1482,37 @@
               </div>
             </div>
 
-            <div class="ops-card">
+            <a class="ops-card tool-card" href="#">
               <div class="label">
-                <div class="label-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                <div class="label-icon tableau-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="13" width="3" height="5"/><rect x="12" y="9" width="3" height="9"/><rect x="17" y="6" width="3" height="12"/></svg>
                 </div>
-                AR Aging
+                Tableau
               </div>
-              <div class="value">$84<span class="unit">.2k</span></div>
+              <div class="tool-name">Open Dashboards</div>
               <div class="sub">
-                <span class="status-pill amber"><span class="dot"></span>30+ days</span>
+                <span class="tool-meta">KPMs · Reports · Benchmarks</span>
               </div>
-            </div>
+              <div class="tool-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </div>
+            </a>
 
-            <div class="ops-card">
+            <a class="ops-card tool-card" href="#">
               <div class="label">
-                <div class="label-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+                <div class="label-icon workcenter-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
                 </div>
-                Revenue (MTD)
+                WorkCenter
               </div>
-              <div class="value">$412<span class="unit">k</span></div>
+              <div class="tool-name">Open Jobs</div>
               <div class="sub">
-                <span class="trend-up">▲ 12.4%</span>
-                <span style="opacity:0.6">vs prior month</span>
+                <span class="tool-meta">22 active · 4 pending</span>
               </div>
-            </div>
+              <div class="tool-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </div>
+            </a>
 
             <div class="ops-card">
               <div class="label">
@@ -1228,13 +1530,13 @@
             <div class="ops-card">
               <div class="label">
                 <div class="label-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2M16 3a4 4 0 010 8M21 21v-2a4 4 0 00-3-3.87"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l4-4 4 4 6-6 4 4"/><path d="M3 20h18"/></svg>
                 </div>
-                Crew Utilization
+                KPI Health
               </div>
               <div class="value">87<span class="unit">%</span></div>
               <div class="sub">
-                <span class="status-pill blue"><span class="dot"></span>22 active</span>
+                <span class="status-pill amber"><span class="dot"></span>6 need attention</span>
               </div>
             </div>
           </div>
@@ -1382,16 +1684,48 @@
       <!-- RIGHT SIDEBAR -->
       <aside class="right-col">
 
+        <a href="#" class="storm-card">
+          <svg class="storm-map" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Stylized regional map silhouette -->
+            <path d="M30 70 Q40 60 55 65 L70 55 Q85 50 95 60 L110 55 Q125 50 140 60 L155 70 Q170 80 165 95 L160 115 Q150 130 130 128 L100 130 Q75 132 60 125 L40 115 Q25 100 30 70 Z" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="rgba(255,255,255,0.05)"/>
+            <!-- Storm location pin -->
+            <circle cx="105" cy="85" r="14" fill="rgba(168, 230, 176, 0.25)"/>
+            <circle cx="105" cy="85" r="8" fill="rgba(168, 230, 176, 0.5)"/>
+            <circle cx="105" cy="85" r="4" fill="#a8e6b0"/>
+            <!-- Outer ring pulse -->
+            <circle cx="105" cy="85" r="22" stroke="rgba(168, 230, 176, 0.3)" stroke-width="1" fill="none"/>
+            <!-- Other affected regions -->
+            <circle cx="80" cy="95" r="3" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="125" cy="78" r="3" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="115" cy="105" r="2.5" fill="rgba(255,255,255,0.4)"/>
+            <!-- Grid lines -->
+            <path d="M30 90 L170 90" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+            <path d="M100 50 L100 130" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+          </svg>
+          <div class="storm-header">
+            <span class="storm-pulse"></span>
+            <span class="storm-label">Storm Update</span>
+            <span class="storm-status">Active</span>
+          </div>
+          <div class="storm-title">Gulf Coast severe weather event</div>
+          <div class="storm-detail">Deployment open across 4 counties in your region. Mobilization protocols activated.</div>
+          <div class="storm-meta">
+            <span>2 hrs ago</span>
+            <span class="meta-dot"></span>
+            <span>14 franchises responding</span>
+          </div>
+        </a>
+
         <div class="side-card">
           <div class="side-card-title">Persona Hubs</div>
           <div class="hub-list">
-            <a class="hub-item primary" href="#">
+            <a class="hub-item" href="#">
               <div class="hub-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
               </div>
               <div class="hub-text">
                 <div class="hub-name">Owner & Management</div>
-                <div class="hub-tag">Your hub</div>
+                <div class="hub-tag">Tools · Resources · Insights</div>
               </div>
               <svg class="hub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </a>
@@ -1401,7 +1735,7 @@
               </div>
               <div class="hub-text">
                 <div class="hub-name">Marketing & BD</div>
-                <div class="hub-tag">Brand · Sales · Outreach</div>
+                <div class="hub-tag">Tools · Resources · Insights</div>
               </div>
               <svg class="hub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </a>
@@ -1411,7 +1745,7 @@
               </div>
               <div class="hub-text">
                 <div class="hub-name">Office & Administration</div>
-                <div class="hub-tag">Audit · Forms · Billing</div>
+                <div class="hub-tag">Tools · Resources · Insights</div>
               </div>
               <svg class="hub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </a>
@@ -1421,7 +1755,7 @@
               </div>
               <div class="hub-text">
                 <div class="hub-name">Field Management</div>
-                <div class="hub-tag">Crew · Dispatch · Quality</div>
+                <div class="hub-tag">Tools · Resources · Insights</div>
               </div>
               <svg class="hub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </a>
@@ -1431,48 +1765,67 @@
               </div>
               <div class="hub-text">
                 <div class="hub-name">Field Technicians</div>
-                <div class="hub-tag">Checklists · Procedures</div>
+                <div class="hub-tag">Tools · Resources · Insights</div>
               </div>
               <svg class="hub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </a>
           </div>
         </div>
 
-        <div class="side-card">
-          <div class="side-card-title">Your HQ Contacts</div>
-          <div class="contact-list">
-            <div class="contact-item">
-              <div class="contact-avatar a1">SM</div>
-              <div class="contact-info">
-                <div class="contact-name">Sarah Mitchell</div>
-                <div class="contact-role">Your FBC · Region 4</div>
+        <div class="resources-card">
+          <div class="side-card-title">Popular Owner Resources</div>
+          <div class="resource-grid">
+            <a class="resource-btn" href="#">
+              <div class="resource-icon tableau">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="13" width="3" height="5"/><rect x="12" y="9" width="3" height="9"/><rect x="17" y="6" width="3" height="12"/></svg>
               </div>
-              <div class="contact-action">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              <div>
+                <div class="resource-name">Tableau Dashboards</div>
+                <div class="resource-sub">KPMs · Reports</div>
               </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-avatar a2">DR</div>
-              <div class="contact-info">
-                <div class="contact-name">David Reyes</div>
-                <div class="contact-role">National Accounts — State Farm</div>
+            </a>
+            <a class="resource-btn" href="#">
+              <div class="resource-icon workcenter">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
               </div>
-              <div class="contact-action">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+              <div>
+                <div class="resource-name">WorkCenter</div>
+                <div class="resource-sub">Job operations</div>
               </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-avatar a3">JL</div>
-              <div class="contact-info">
-                <div class="contact-name">Janet Liu</div>
-                <div class="contact-role">Compliance & APA Lead</div>
+            </a>
+            <a class="resource-btn" href="#">
+              <div class="resource-icon r1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
               </div>
-              <div class="contact-action">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              <div>
+                <div class="resource-name">Owner Playbooks</div>
+                <div class="resource-sub">Strategy guides</div>
               </div>
-            </div>
+            </a>
+            <a class="resource-btn" href="#">
+              <div class="resource-icon r2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+              </div>
+              <div>
+                <div class="resource-name">Compensation Tools</div>
+                <div class="resource-sub">Pay & incentives</div>
+              </div>
+            </a>
           </div>
         </div>
+
+        <a href="#" class="lookup-people">
+          <div class="lookup-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/><circle cx="11" cy="9" r="2.5"/><path d="M7 15c.5-1.5 2-2.5 4-2.5s3.5 1 4 2.5"/></svg>
+          </div>
+          <div class="lookup-text">
+            <div class="lookup-name">Look up people</div>
+            <div class="lookup-sub">Search by team, role, region</div>
+          </div>
+          <div class="lookup-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </div>
+        </a>
 
         <div class="side-card">
           <div class="side-card-title">Franchise Forum</div>

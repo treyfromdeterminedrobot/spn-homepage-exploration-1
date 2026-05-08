@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SERVPRONET — Owner & Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/qkw5jol.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f1ec;
+    --bg-2: #ebe7e0;
+    --bg-warm: #f7f3ea;
+    --bg-cool: #eef0ef;
+    --surface: #ffffff;
+    --surface-soft: #fbfaf7;
+    --ink: #1a1a1a;
+    --ink-2: #3d3d3d;
+    --muted: #8a8580;
+    --line: #e6e1d8;
+    --line-strong: #d8d2c5;
+    --accent: #ff6b1a;
+    --accent-soft: #fff1e8;
+    --accent-deep: #c94a00;
+    --green: #2f7d4f;
+    --green-soft: #e3f0e6;
+    --amber: #c98a16;
+    --amber-soft: #fdf3dc;
+    --red: #c4422c;
+    --red-soft: #fbe5df;
+    --blue: #2c5fb8;
+    --blue-soft: #e2ecfa;
+    --ink-card: #1f1d1a;
+    --shadow-sm: 0 1px 2px rgba(20, 18, 14, 0.04), 0 2px 6px rgba(20, 18, 14, 0.04);
+    --shadow-md: 0 4px 14px rgba(20, 18, 14, 0.06), 0 1px 3px rgba(20, 18, 14, 0.04);
+    --shadow-lg: 0 16px 40px rgba(20, 18, 14, 0.08), 0 4px 12px rgba(20, 18, 14, 0.05);
+    --radius-sm: 14px;
+    --radius: 20px;
+    --radius-lg: 28px;
+    --serif: 'Fraunces', Georgia, serif;
+    --graphy: 'graphy', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--graphy);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(255, 107, 26, 0.08), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, rgba(47, 125, 79, 0.05), transparent 55%),
+      var(--bg);
+    min-height: 100vh;
+    padding: 24px 36px 80px;
+  }
+
+  /* === TOP NAV BAR === */
+  .top-nav {
+    max-width: 1480px;
+    margin: 0 auto 24px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+  }
+  .top-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-logo-mark {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .nav-logo-text {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .nav-logo-text span { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-link {
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--ink-2);
+    cursor: pointer;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.15s ease;
+  }
+  .nav-link:hover { background: var(--bg-2); }
+  .nav-link.active { background: var(--ink-card); color: white; }
+  .nav-link svg { width: 10px; height: 10px; margin-left: 4px; opacity: 0.5; vertical-align: middle; }
+  .top-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .icon-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+    cursor: pointer;
+    color: var(--ink-2);
+    position: relative;
+  }
+  .icon-btn:hover { background: var(--bg-2); }
+  .icon-btn svg { width: 16px; height: 16px; }
+  .icon-btn .badge-dot {
+    position: absolute;
+    top: 8px; right: 8px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--surface);
+  }
+  .avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+    color: white;
+    font-weight: 600;
+    font-size: 13px;
+    display: grid; place-items: center;
+    border: 2px solid var(--surface);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+  }
+
+  /* === LAYOUT SHELL === */
+  .shell {
+    max-width: 1480px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 28px;
+  }
+
+  /* === LEFT TOOLBAR === */
+  .toolbar {
+    background: var(--ink-card);
+    border-radius: var(--radius);
+    padding: 18px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    height: fit-content;
+    position: sticky;
+    top: 24px;
+  }
+  .toolbar-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: grid; place-items: center;
+    color: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .toolbar-icon:hover { background: rgba(255, 255, 255, 0.08); color: white; }
+  .toolbar-icon.active { background: rgba(255, 107, 26, 0.18); color: var(--accent); }
+  .toolbar-icon svg { width: 18px; height: 18px; }
+  .toolbar-divider { width: 24px; height: 1px; background: rgba(255, 255, 255, 0.1); }
+  .toolbar-label {
+    font-family: var(--mono);
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transform: rotate(-90deg);
+    margin: 8px 0;
+    white-space: nowrap;
+  }
+
+  /* === MAIN === */
+  .main { display: flex; flex-direction: column; gap: 28px; }
+
+  /* === GREETING ROW === */
+  .greeting-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0 4px;
+  }
+  .greeting-block .breadcrumb {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .greeting {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .greeting em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-deep);
+  }
+  .greeting-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* === SEARCH === */
+  .search-bar {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+  }
+  .search-bar:focus-within {
+    border-color: var(--ink);
+    box-shadow: var(--shadow-md);
+  }
+  .search-icon {
+    width: 22px; height: 22px;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .search-bar input::placeholder { color: var(--muted); font-style: italic; }
+
+  /* ============================================
+     SECTION DIFFERENTIATION
+     Each section has a distinct visual treatment
+     ============================================ */
+
+  /* SECTION LABELS — slightly varied per section */
+  .section-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .section-label .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label .label::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--ink);
+    border-radius: 50%;
+  }
+  .section-label .meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ====== SECTION 1: TIER 1 NEWS — bold, dark, prominent ====== */
+  .section-tier1 {
+    background: var(--ink-card);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    color: white;
+    background-image:
+      radial-gradient(circle at 95% 5%, rgba(255, 107, 26, 0.18), transparent 50%),
+      radial-gradient(circle at 5% 95%, rgba(255, 107, 26, 0.08), transparent 55%);
+    position: relative;
+  }
+  .section-tier1 .section-label .label { color: rgba(255, 255, 255, 0.5); }
+  .section-tier1 .section-label .label::before { background: var(--accent); }
+  .section-tier1 .section-label .meta { color: rgba(255, 255, 255, 0.4); }
+
+  .tier1-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 16px;
+  }
+  .tier1-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .tier1-card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  .tier1-card.feature {
+    background: linear-gradient(135deg, rgba(255, 107, 26, 0.18), rgba(255, 107, 26, 0.04));
+    border: 1px solid rgba(255, 107, 26, 0.25);
+  }
+
+  .tier1-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tier1-eyebrow .badge {
+    background: rgba(255, 107, 26, 0.18);
+    color: var(--accent);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 9px;
+  }
+
+  .tier1-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: white;
+  }
+  .tier1-card:not(.feature) .tier1-title { font-size: 20px; }
+
+  .tier1-summary {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .tier1-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: auto;
+    padding-top: 8px;
+  }
+  .tier1-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+
+  .tier1-card.feature .tier1-arrow {
+    position: absolute;
+    top: 24px; right: 24px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    display: grid; place-items: center;
+  }
+
+  /* === MAIN GRID === */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .left-col { display: flex; flex-direction: column; gap: 28px; }
+
+  /* ====== SECTION 2: FRANCHISE HEALTH — clean white cards floating ====== */
+  .section-health {
+    /* No section background — cards float on body */
+  }
+  .ops-snapshot {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+  .ops-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 140px;
+  }
+  .ops-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .ops-card .label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ops-card .label-icon {
+    width: 22px; height: 22px;
+    border-radius: 7px;
+    display: grid; place-items: center;
+    background: var(--bg-2);
+  }
+  .ops-card .label-icon svg { width: 12px; height: 12px; }
+  .ops-card .value {
+    font-family: var(--graphy);
+    font-size: 44px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .ops-card .value .unit {
+    font-size: 18px;
+    color: var(--muted);
+    font-family: var(--graphy);
+    font-weight: 400;
+    margin-left: 2px;
+  }
+  .ops-card .sub {
+    font-size: 12px;
+    color: var(--ink-2);
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .status-pill.green { background: var(--green-soft); color: var(--green); }
+  .status-pill.amber { background: var(--amber-soft); color: var(--amber); }
+  .status-pill.red { background: var(--red-soft); color: var(--red); }
+  .status-pill.blue { background: var(--blue-soft); color: var(--blue); }
+  .status-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  .ops-card.audit {
+    grid-row: span 2;
+    background: var(--ink-card);
+    color: white;
+    border: none;
+    background-image:
+      radial-gradient(circle at 0% 100%, rgba(255, 107, 26, 0.22), transparent 55%);
+  }
+  .ops-card.audit .label { color: rgba(255, 255, 255, 0.6); }
+  .ops-card.audit .label-icon { background: rgba(255, 255, 255, 0.08); color: var(--accent); }
+  .ops-card.audit .value { color: white; font-size: 64px; }
+  .ops-card.audit .value .unit { color: rgba(255, 255, 255, 0.5); }
+  .ops-card.audit .sub { color: rgba(255, 255, 255, 0.7); }
+
+  .audit-breakdown {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .audit-stat .num {
+    font-family: var(--graphy);
+    font-size: 22px;
+    font-weight: 600;
+    color: white;
+  }
+  .audit-stat .num.amber-text { color: #f5b94c; }
+  .audit-stat .num.red-text { color: #f57761; }
+  .audit-stat .lbl {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .audit-bars {
+    display: flex;
+    gap: 3px;
+    margin-top: 16px;
+    height: 5px;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .audit-bars span { height: 100%; }
+  .audit-bars .b-green { background: #6dd97a; flex: 38; }
+  .audit-bars .b-amber { background: #f5b94c; flex: 8; }
+  .audit-bars .b-red { background: #f57761; flex: 1; }
+
+  .trend-up, .trend-down {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .trend-up { color: var(--green); }
+  .trend-down { color: var(--red); }
+
+  /* ====== SECTION 3: BULLETINS — warm tone, paper-like, editorial ====== */
+  .section-bulletins {
+    background: var(--bg-warm);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    position: relative;
+  }
+  .section-bulletins::before {
+    content: '';
+    position: absolute;
+    top: 28px; right: 28px; bottom: 28px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--line-strong), transparent);
+    opacity: 0;
+  }
+
+  .bulletins-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .bulletins-header {
+    padding: 22px 24px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .bulletins-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .bulletins-filter {
+    display: flex; gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+  .bulletins-filter .chip {
+    padding: 4px 10px;
+    background: var(--bg-2);
+    color: var(--ink-2);
+    border-radius: 999px;
+  }
+  .bulletins-filter .chip.region { background: var(--blue-soft); color: var(--blue); }
+
+  .bulletin-item {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .bulletin-item:last-child { border-bottom: none; }
+  .bulletin-item:hover { background: var(--surface-soft); }
+  .bulletin-carrier {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .bulletin-content { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .bulletin-headline {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .bulletin-summary {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .bulletin-meta {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+  .new-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .bulletins-footer {
+    padding: 14px 24px;
+    background: var(--surface-soft);
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .view-all {
+    color: var(--ink);
+    font-weight: 500;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px;
+  }
+
+  /* ====== SECTION 4: TIER 2 — paper feel, editorial, side-by-side feeds ====== */
+  .section-feeds {
+    background: var(--bg-cool);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+  }
+  .feed-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .feed-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .feed-card.suggested {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .feed-card.suggested::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent 80%);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .feed-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .feed-card-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .feed-card-sub {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .feed-list {
+    display: flex; flex-direction: column;
+  }
+  .feed-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    transition: padding 0.15s ease;
+  }
+  .feed-item:hover { padding-left: 4px; }
+  .feed-item:last-child { border-bottom: none; }
+  .feed-item-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .feed-item-tag .tag-dot {
+    width: 7px; height: 7px;
+    border-radius: 2px;
+  }
+  .tag-dot.compliance { background: var(--red); }
+  .tag-dot.training { background: var(--blue); }
+  .tag-dot.platform { background: var(--amber); }
+  .tag-dot.marketing { background: #a25cd1; }
+  .tag-dot.events { background: var(--green); }
+  .tag-dot.account { background: var(--accent); }
+  .feed-item-title {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.35;
+    font-weight: 500;
+  }
+  .feed-item-meta {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* === RIGHT SIDEBAR === */
+  .right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: sticky;
+    top: 24px;
+  }
+  .side-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+  }
+  .side-card-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .side-card-title::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--ink);
+    border-radius: 50%;
+  }
+
+  /* Persona Hubs */
+  .hub-list { display: flex; flex-direction: column; gap: 4px; }
+  .hub-item {
+    padding: 11px 12px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+  .hub-item:hover { background: var(--bg-2); }
+  .hub-item.primary {
+    background: var(--ink-card);
+    color: white;
+  }
+  .hub-item.primary:hover { background: #2a2724; }
+  .hub-icon {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: var(--bg-2);
+    display: grid; place-items: center;
+    flex-shrink: 0;
+    color: var(--ink);
+  }
+  .hub-icon svg { width: 15px; height: 15px; }
+  .hub-item.primary .hub-icon {
+    background: var(--accent);
+    color: white;
+  }
+  .hub-text { display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0; }
+  .hub-name { font-size: 13px; font-weight: 500; }
+  .hub-tag {
+    font-size: 10px;
+    color: var(--muted);
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+  .hub-item.primary .hub-tag { color: rgba(255, 255, 255, 0.55); }
+  .hub-arrow { color: var(--muted); width: 14px; height: 14px; flex-shrink: 0; }
+  .hub-item.primary .hub-arrow { color: rgba(255, 255, 255, 0.5); }
+
+  /* Contacts */
+  .contact-list { display: flex; flex-direction: column; gap: 12px; }
+  .contact-item {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    cursor: pointer;
+  }
+  .contact-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .a1 { background: linear-gradient(135deg, #ff8c5a, #ff6b1a); }
+  .a2 { background: linear-gradient(135deg, #4a8bdc, #2c5fb8); }
+  .a3 { background: linear-gradient(135deg, #5fb87f, #2f7d4f); }
+  .contact-info { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+  .contact-name { font-size: 13px; font-weight: 500; }
+  .contact-role {
+    font-size: 11px;
+    color: var(--muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .contact-action {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: var(--bg-2);
+    display: grid; place-items: center;
+    color: var(--ink-2);
+  }
+  .contact-action svg { width: 13px; height: 13px; }
+
+  /* Forum */
+  .forum-thread {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .forum-thread:last-child { border-bottom: none; padding-bottom: 0; }
+  .forum-thread:first-child { padding-top: 0; }
+  .forum-q {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .forum-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .verified-badge {
+    background: var(--green-soft);
+    color: var(--green);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 600;
+    font-family: var(--mono);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* Quick links */
+  .quick-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .quick-link {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow-sm);
+  }
+  .quick-link:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  .quick-link.dark {
+    background: var(--ink-card);
+    color: white;
+    border: none;
+  }
+  .quick-link.accent {
+    background: var(--accent);
+    color: white;
+    border: none;
+  }
+  .ql-icon {
+    width: 30px; height: 30px;
+    border-radius: 9px;
+    background: var(--bg-2);
+    display: grid; place-items: center;
+    color: var(--ink);
+  }
+  .quick-link.dark .ql-icon { background: rgba(255, 255, 255, 0.1); color: white; }
+  .quick-link.accent .ql-icon { background: rgba(255, 255, 255, 0.18); color: white; }
+  .ql-icon svg { width: 14px; height: 14px; }
+  .ql-name { font-size: 13px; font-weight: 500; }
+  .ql-sub { font-size: 11px; opacity: 0.65; font-family: var(--mono); letter-spacing: 0.04em; }
+
+  .customize {
+    background: var(--surface-soft);
+    border: 1px dashed var(--line-strong);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.15s ease;
+  }
+  .customize:hover {
+    border-color: var(--ink);
+    background: var(--surface);
+  }
+  .customize-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: var(--bg-2);
+    display: grid; place-items: center;
+    flex-shrink: 0;
+  }
+  .customize-icon svg { width: 13px; height: 13px; }
+  .customize-text { font-size: 12px; line-height: 1.35; }
+  .customize-text strong { display: block; font-size: 13px; font-weight: 500; }
+  .customize-text span { color: var(--muted); }
+
+  .grain {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    z-index: 1000;
+  }
+
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- TOP NAVIGATION BAR -->
+<nav class="top-nav">
+  <div class="top-nav-left">
+    <div class="nav-logo">
+      <div class="nav-logo-mark">S</div>
+      <div class="nav-logo-text">SERVPRO<span>NET</span></div>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#">Home</a>
+      <a class="nav-link" href="#">National Accounts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a class="nav-link" href="#">Operations <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a class="nav-link" href="#">Marketing <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a class="nav-link" href="#">Training <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a class="nav-link" href="#">People & HR <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a class="nav-link" href="#">Resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+    </div>
+  </div>
+  <div class="top-nav-right">
+    <div class="icon-btn" title="Help">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+    </div>
+    <div class="icon-btn" title="Notifications">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
+      <span class="badge-dot"></span>
+    </div>
+    <div class="avatar">TR</div>
+  </div>
+</nav>
+
+<div class="shell">
+  <!-- LEFT TOOLBAR -->
+  <aside class="toolbar">
+    <div class="toolbar-icon active" title="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12L12 4l9 8M5 10v10h14V10"/></svg>
+    </div>
+    <div class="toolbar-icon" title="WorkCenter">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    </div>
+    <div class="toolbar-icon" title="Salesforce">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+    </div>
+    <div class="toolbar-icon" title="Tableau">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="13" width="3" height="5"/><rect x="12" y="9" width="3" height="9"/><rect x="17" y="6" width="3" height="12"/></svg>
+    </div>
+    <div class="toolbar-icon" title="DryBook">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h12a4 4 0 014 4v12H8a4 4 0 01-4-4V4z"/><path d="M4 16h16"/></svg>
+    </div>
+    <div class="toolbar-divider"></div>
+    <div class="toolbar-icon" title="ServPro U">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7l10-4 10 4-10 4-10-4z"/><path d="M6 9v5c0 2 3 3 6 3s6-1 6-3V9"/></svg>
+    </div>
+    <div class="toolbar-icon" title="Add tool">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- GREETING -->
+    <div class="greeting-row">
+      <div class="greeting-block">
+        <div class="breadcrumb">SERVPRONET / Home</div>
+        <h1 class="greeting">Good morning, Trey. <em>Here's today.</em></h1>
+      </div>
+      <div class="greeting-meta">Friday · May 8, 2026</div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-bar">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <circle cx="11" cy="11" r="7"/>
+        <path d="M20 20l-3.5-3.5"/>
+      </svg>
+      <input type="text" placeholder="What do you need?">
+    </div>
+
+    <!-- ====== SECTION 1: TIER 1 NEWS — Dark, prominent, glowing ====== -->
+    <section class="section-tier1">
+      <div class="section-label">
+        <div class="label">Must Read</div>
+        <div class="meta">3 items · curated by HQ Communications</div>
+      </div>
+      <div class="tier1-row">
+        <article class="tier1-card feature">
+          <div class="tier1-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </div>
+          <div class="tier1-eyebrow">
+            <span>National Accounts</span>
+            <span class="badge">Effective May 12</span>
+          </div>
+          <h2 class="tier1-title">State Farm audit format change requires immediate documentation update</h2>
+          <p class="tier1-summary">Subject line format has been revised for all residential water mitigation submissions. Files submitted under the previous format after May 12 will be auto-rejected by the APA monitor.</p>
+          <div class="tier1-meta">
+            <span>Posted today, 6:42 AM</span>
+            <span class="dot"></span>
+            <span>Affects all franchises</span>
+            <span class="dot"></span>
+            <span>3 min read</span>
+          </div>
+        </article>
+
+        <article class="tier1-card">
+          <div class="tier1-eyebrow">
+            <span>Storm Operations</span>
+            <span class="badge">Region 4</span>
+          </div>
+          <h2 class="tier1-title">Severe weather deployment activated — Gulf Coast</h2>
+          <div class="tier1-meta">
+            <span>2 hrs ago</span>
+            <span class="dot"></span>
+            <span>Action required</span>
+          </div>
+        </article>
+
+        <article class="tier1-card">
+          <div class="tier1-eyebrow">
+            <span>Compliance</span>
+            <span class="badge">Due May 30</span>
+          </div>
+          <h2 class="tier1-title">APA recertification window now open</h2>
+          <div class="tier1-meta">
+            <span>Yesterday</span>
+            <span class="dot"></span>
+            <span>22 days left</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT GRID -->
+    <div class="content-grid">
+
+      <!-- LEFT COLUMN -->
+      <div class="left-col">
+
+        <!-- ====== SECTION 2: FRANCHISE HEALTH — clean floating cards ====== -->
+        <section class="section-health">
+          <div class="section-label">
+            <div class="label">Franchise Health</div>
+            <div class="meta">Updated 12 min ago · live data</div>
+          </div>
+          <div class="ops-snapshot">
+            <div class="ops-card audit">
+              <div class="label">
+                <div class="label-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                </div>
+                Audit Performance
+              </div>
+              <div class="value">94<span class="unit">%</span></div>
+              <div class="sub">
+                <span class="status-pill green"><span class="dot"></span>On track</span>
+                <span style="opacity:0.6">vs 91% last month</span>
+              </div>
+              <div class="audit-bars">
+                <span class="b-green"></span>
+                <span class="b-amber"></span>
+                <span class="b-red"></span>
+              </div>
+              <div class="audit-breakdown">
+                <div class="audit-stat">
+                  <div class="num">38</div>
+                  <div class="lbl">Clean</div>
+                </div>
+                <div class="audit-stat">
+                  <div class="num amber-text">8</div>
+                  <div class="lbl">At risk</div>
+                </div>
+                <div class="audit-stat">
+                  <div class="num red-text">1</div>
+                  <div class="lbl">Flagged</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ops-card">
+              <div class="label">
+                <div class="label-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                </div>
+                AR Aging
+              </div>
+              <div class="value">$84<span class="unit">.2k</span></div>
+              <div class="sub">
+                <span class="status-pill amber"><span class="dot"></span>30+ days</span>
+              </div>
+            </div>
+
+            <div class="ops-card">
+              <div class="label">
+                <div class="label-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+                </div>
+                Revenue (MTD)
+              </div>
+              <div class="value">$412<span class="unit">k</span></div>
+              <div class="sub">
+                <span class="trend-up">▲ 12.4%</span>
+                <span style="opacity:0.6">vs prior month</span>
+              </div>
+            </div>
+
+            <div class="ops-card">
+              <div class="label">
+                <div class="label-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg>
+                </div>
+                APA Status
+              </div>
+              <div class="value">3<span class="unit">/5</span></div>
+              <div class="sub">
+                <span class="status-pill amber"><span class="dot"></span>2 due soon</span>
+              </div>
+            </div>
+
+            <div class="ops-card">
+              <div class="label">
+                <div class="label-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2M16 3a4 4 0 010 8M21 21v-2a4 4 0 00-3-3.87"/></svg>
+                </div>
+                Crew Utilization
+              </div>
+              <div class="value">87<span class="unit">%</span></div>
+              <div class="sub">
+                <span class="status-pill blue"><span class="dot"></span>22 active</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====== SECTION 3: BULLETINS — warm, editorial container ====== -->
+        <section class="section-bulletins">
+          <div class="section-label">
+            <div class="label">Bulletins for You</div>
+            <div class="meta">filtered by region & active accounts</div>
+          </div>
+          <div class="bulletins-card">
+            <div class="bulletins-header">
+              <div class="bulletins-title">Carrier Updates</div>
+              <div class="bulletins-filter">
+                <span class="chip region">Region 4</span>
+                <span class="chip">State Farm</span>
+                <span class="chip">Allstate</span>
+                <span class="chip">+3 more</span>
+              </div>
+            </div>
+
+            <div class="bulletin-item">
+              <div class="bulletin-carrier">State Farm</div>
+              <div class="bulletin-content">
+                <div class="bulletin-headline">Photo documentation requirements expanded for water mitigation Cat 3</div>
+                <div class="bulletin-summary">Now requires geotagged photos of moisture readings at 24/48/72hr intervals</div>
+              </div>
+              <div class="bulletin-meta">
+                <span class="new-dot"></span>
+                <span>2d ago</span>
+              </div>
+            </div>
+
+            <div class="bulletin-item">
+              <div class="bulletin-carrier">Allstate</div>
+              <div class="bulletin-content">
+                <div class="bulletin-headline">Updated rate schedule for emergency mitigation services</div>
+                <div class="bulletin-summary">Line-item rate adjustments effective for jobs assigned after June 1, 2026</div>
+              </div>
+              <div class="bulletin-meta">
+                <span class="new-dot"></span>
+                <span>4d ago</span>
+              </div>
+            </div>
+
+            <div class="bulletin-item">
+              <div class="bulletin-carrier">USAA</div>
+              <div class="bulletin-content">
+                <div class="bulletin-headline">Mold remediation scope-of-work template revised</div>
+                <div class="bulletin-summary">Section 4 (containment requirements) restructured; previous template deprecated</div>
+              </div>
+              <div class="bulletin-meta">
+                <span>1w ago</span>
+              </div>
+            </div>
+
+            <div class="bulletin-item">
+              <div class="bulletin-carrier">Liberty Mutual</div>
+              <div class="bulletin-content">
+                <div class="bulletin-headline">Subrogation documentation portal migration</div>
+                <div class="bulletin-summary">All claims after May 20 must be submitted through new vendor portal</div>
+              </div>
+              <div class="bulletin-meta">
+                <span>1w ago</span>
+              </div>
+            </div>
+
+            <div class="bulletins-footer">
+              <span>Showing 4 of 18 active bulletins for your region</span>
+              <a href="#" class="view-all">View all →</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====== SECTION 4: TIER 2 + SUGGESTED — cool tone container ====== -->
+        <section class="section-feeds">
+          <div class="section-label">
+            <div class="label">Worth Your Attention</div>
+            <div class="meta">Tier 2 updates · personalized picks</div>
+          </div>
+          <div class="feed-section">
+            <div class="feed-card">
+              <div class="feed-card-header">
+                <div class="feed-card-title">Worth Knowing</div>
+                <div class="feed-card-sub">Curated · Tier 2</div>
+              </div>
+              <div class="feed-list">
+                <div class="feed-item">
+                  <div class="feed-item-tag"><span class="tag-dot compliance"></span>Compliance</div>
+                  <div class="feed-item-title">New OSHA respiratory protection training due Q2</div>
+                  <div class="feed-item-meta">Yesterday · HQ Safety</div>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-item-tag"><span class="tag-dot training"></span>Training</div>
+                  <div class="feed-item-title">WRT Advanced certification cohort opens June 3</div>
+                  <div class="feed-item-meta">2d ago · ServPro U</div>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-item-tag"><span class="tag-dot platform"></span>Platform</div>
+                  <div class="feed-item-title">DryBook v8.4 release: new moisture mapping export</div>
+                  <div class="feed-item-meta">3d ago · Technology</div>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-item-tag"><span class="tag-dot account"></span>Accounts</div>
+                  <div class="feed-item-title">Travelers expanding TPA program to 3 new states</div>
+                  <div class="feed-item-meta">5d ago · National Accounts</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="feed-card suggested">
+              <div class="feed-card-header">
+                <div class="feed-card-title">Suggested for You</div>
+                <div class="feed-card-sub">Auto · based on your role</div>
+              </div>
+              <div class="feed-list">
+                <div class="feed-item">
+                  <div class="feed-item-tag"><span class="tag-dot account"></span>National Accounts</div>
+                  <div class="feed-item-title">Carrier program manager directory updated for Q2</div>
+                  <div class="feed-item-meta">Today · You follow this topic</div>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-item-tag"><span class="tag-dot platform"></span>Operations</div>
+                  <div class="feed-item-title">Multi-unit performance benchmarking guide refreshed</div>
+                  <div class="feed-item-meta">Today · Owner content</div>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-item-tag"><span class="tag-dot events"></span>Events</div>
+                  <div class="feed-item-title">Owner Summit 2026 — early registration extended</div>
+                  <div class="feed-item-meta">2d ago · You attended last year</div>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-item-tag"><span class="tag-dot marketing"></span>Marketing</div>
+                  <div class="feed-item-title">Q2 brand asset refresh now available in DAM</div>
+                  <div class="feed-item-meta">4d ago · Cross-team relevance</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="right-col">
+
+        <div class="side-card">
+          <div class="side-card-title">Persona Hubs</div>
+          <div class="hub-list">
+            <a class="hub-item primary" href="#">
+              <div class="hub-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+              </div>
+              <div class="hub-text">
+                <div class="hub-name">Owner & Management</div>
+                <div class="hub-tag">Your hub</div>
+              </div>
+              <svg class="hub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+            <a class="hub-item" href="#">
+              <div class="hub-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-8-3 18-7-7-8-3z"/></svg>
+              </div>
+              <div class="hub-text">
+                <div class="hub-name">Marketing & BD</div>
+                <div class="hub-tag">Brand · Sales · Outreach</div>
+              </div>
+              <svg class="hub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+            <a class="hub-item" href="#">
+              <div class="hub-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 16h6"/></svg>
+              </div>
+              <div class="hub-text">
+                <div class="hub-name">Office & Administration</div>
+                <div class="hub-tag">Audit · Forms · Billing</div>
+              </div>
+              <svg class="hub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+            <a class="hub-item" href="#">
+              <div class="hub-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>
+              </div>
+              <div class="hub-text">
+                <div class="hub-name">Field Management</div>
+                <div class="hub-tag">Crew · Dispatch · Quality</div>
+              </div>
+              <svg class="hub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+            <a class="hub-item" href="#">
+              <div class="hub-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 6l-4 4M6 14l4-4M2 22l4-4M14 6h8M6 14v8M14 6a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+              </div>
+              <div class="hub-text">
+                <div class="hub-name">Field Technicians</div>
+                <div class="hub-tag">Checklists · Procedures</div>
+              </div>
+              <svg class="hub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <div class="side-card-title">Your HQ Contacts</div>
+          <div class="contact-list">
+            <div class="contact-item">
+              <div class="contact-avatar a1">SM</div>
+              <div class="contact-info">
+                <div class="contact-name">Sarah Mitchell</div>
+                <div class="contact-role">Your FBC · Region 4</div>
+              </div>
+              <div class="contact-action">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-avatar a2">DR</div>
+              <div class="contact-info">
+                <div class="contact-name">David Reyes</div>
+                <div class="contact-role">National Accounts — State Farm</div>
+              </div>
+              <div class="contact-action">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-avatar a3">JL</div>
+              <div class="contact-info">
+                <div class="contact-name">Janet Liu</div>
+                <div class="contact-role">Compliance & APA Lead</div>
+              </div>
+              <div class="contact-action">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <div class="side-card-title">Franchise Forum</div>
+          <div>
+            <div class="forum-thread">
+              <div class="forum-q">How are you handling Liberty Mutual's new subrogation portal?</div>
+              <div class="forum-meta">
+                <span class="verified-badge">HQ Verified</span>
+                <span>14 replies · today</span>
+              </div>
+            </div>
+            <div class="forum-thread">
+              <div class="forum-q">Best practices for storm deployment crew rotation?</div>
+              <div class="forum-meta">
+                <span>9 replies · 2d ago</span>
+              </div>
+            </div>
+            <div class="forum-thread">
+              <div class="forum-q">Multi-unit profit sharing structures — comparing notes</div>
+              <div class="forum-meta">
+                <span>22 replies · 3d ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-links">
+          <a href="#" class="quick-link accent">
+            <div class="ql-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>
+            </div>
+            <div>
+              <div class="ql-name">SERVPRO Source</div>
+              <div class="ql-sub">Equipment & supplies</div>
+            </div>
+          </a>
+          <a href="#" class="quick-link dark">
+            <div class="ql-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            </div>
+            <div>
+              <div class="ql-name">Service Desk</div>
+              <div class="ql-sub">Get support</div>
+            </div>
+          </a>
+        </div>
+
+        <a href="#" class="customize">
+          <div class="customize-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          </div>
+          <div class="customize-text">
+            <strong>Customize this page</strong>
+            <span>Topics, notifications, toolbar</span>
+          </div>
+        </a>
+      </aside>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
